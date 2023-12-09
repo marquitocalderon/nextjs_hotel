@@ -99,6 +99,7 @@ export default function Registrarse() {
 
       const enviarDatos = {
         nombre_completo: formDatos.get("nombre_completo"),
+        correo : formDatos.get("correo"),
         dni: formDatos.get("dni"),
         departamento:  departamentoNombre,
         provincia: provinciaNombre,
@@ -184,9 +185,6 @@ export default function Registrarse() {
           <div className="grid grid-cols-6 gap-4 px-4">
             <div className="col-span-6">
               <h2 className="text-3xl font-bold mb-3">Registrarse</h2>
-              <p className="text-gray-500">
-                Complete todo los campos por favor
-              </p>
             </div>
             <div className="mb-4 col-span-3">
               <label
@@ -428,14 +426,39 @@ export default function Registrarse() {
               </select>
             </div>
 
-            <div className="mb-4 col-span-6">
-            <p className="text-red-500 text-xl font-bold mb-4">{errorMessage}</p>
-              <button
+            <div className="mb-4 col-span-4">
+              <label
+                htmlFor="nombre"
+                className="block text-gray-700 text-sm font-bold mb-2"
+              >
+                Correo Electronico:
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                type="email"
+                placeholder="Correo Electronico"
+                name="correo"
+                required
+              />
+            </div>
+
+            <div className="col-span-2">
+            <label
+                htmlFor="nombre"
+                className="block text-gray-700 text-sm font-bold mb-2"
+              >
+-
+              </label>
+            <button
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
                 {cambiarBoton ? "Registrando" : "Registrarse"}
               </button>
+            </div>
+
+            <div className="mb-4 col-span-6">
+            <p className="text-red-500 text-xl font-bold mb-4">{errorMessage}</p>
             </div>
           </div>
         </form>
