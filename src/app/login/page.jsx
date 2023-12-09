@@ -7,6 +7,7 @@ export default function page() {
   const [errorMessage, setErrorMessage] = useState(""); // Nuevo estado
   
   const [cambiarBoton, setCambiarBoton] = useState(false);
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
