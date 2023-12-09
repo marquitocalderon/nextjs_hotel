@@ -109,7 +109,7 @@ export default function Registrarse() {
 
       try {
         const response = await axios.post(
-          "http://localhost:4000/registro-cliente",
+          "https://backendprueba-9rnj.onrender.com/registro-cliente",
           enviarDatos
         );
 
