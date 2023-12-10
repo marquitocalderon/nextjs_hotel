@@ -1,16 +1,56 @@
 "use client"
 import React, { useState } from "react";
+import axios from "axios"; // Import Axios
+import { useRouter } from "next/navigation"; // Import the router
 
-export default function page() {
-
+export default function Page() {
   const [showPassword, setShowPassword] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(""); // Nuevo estado
-  
+  const [errorMessage, setErrorMessage] = useState("");
   const [cambiarBoton, setCambiarBoton] = useState(false);
+  const router = useRouter(); // Initialize the router
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
+
+
+  const logeoUsuario = async (e) => {
+    setCambiarBoton(true)
+    e.preventDefault();
+    const formDatos = new FormData(e.target);
+
+    const enviarDatos = {
+      usuario: formDatos.get("usuario"),
+      password: formDatos.get("password"),
+    };
+
+    try {
+      const response = await axios.post(
+        "https://backendprueba-9rnj.onrender.com/login",
+        enviarDatos
+      );
+      console.log(response);
+      
+      if (response.status === 200) {
+        // Mover la redirección aquí
+        router.push("/");
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (!error.response) {
+          setErrorMessage("ERROR EN EL SERVIDOR");
+        } else if (error.response.status === 401) {
+          setErrorMessage(error.response.data);
+        } else {
+          setErrorMessage("ERROR DE ENVÍO DE DATOS");
+        }
+      } else {
+        setErrorMessage("ERROR");
+      }
+    }
+  };
+
 
   return (
     <div className="flex justify-center items-center h-screen overflow-hidden bg-white">
@@ -20,7 +60,7 @@ export default function page() {
             width="800px"
             height="800px"
             viewBox="0 0 1024 1024"
-            class="icon"
+            className="icon"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -90,7 +130,7 @@ export default function page() {
           <h2 className="text-3xl font-bold text-center mb-3">BIENVENIDO AL LOGIN</h2>
          </div>
         </div>
-        <form className="flex flex-col px-40">
+        <form className="flex flex-col px-40" onSubmit={logeoUsuario}>
          <div className="mb-4 col-span-3">
               <label
                 htmlFor="nombre"
