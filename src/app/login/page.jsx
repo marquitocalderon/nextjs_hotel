@@ -40,13 +40,17 @@ export default function Page() {
       if (axios.isAxiosError(error)) {
         if (!error.response) {
           setErrorMessage("ERROR EN EL SERVIDOR");
+          setCambiarBoton(false)
         } else if (error.response.status === 401) {
           setErrorMessage(error.response.data);
+          setCambiarBoton(false)
         } else {
           setErrorMessage("ERROR DE ENVÍO DE DATOS");
+          setCambiarBoton(false)
         }
       } else {
         setErrorMessage("ERROR");
+        setCambiarBoton(false)
       }
     }
   };
@@ -202,8 +206,12 @@ export default function Page() {
               </div>
             </div>
 
+            <div className="mt-4 mb-4 col-span-6 flex justify-center items-center">
+              <a href="/recuperar" className="text-center text-blue-500 cursor-pointer">Recuperar Contraseña</a>
+            </div>
+
             <div className="mb-4 col-span-6">
-            <p className="text-red-500 text-xl font-bold mb-4">{errorMessage}</p>
+            <p className="text-red-500 text-xl font-bold mb-4 text-center">{errorMessage}</p>
               <button
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
