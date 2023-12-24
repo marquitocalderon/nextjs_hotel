@@ -17,7 +17,7 @@ export default function Page() {
 
   const handleSubmit = async () => {
     try {
-      const url = "http://localhost:4000/comprobar";
+      const url = "https://backendprueba-9rnj.onrender.com/comprobar";
 
       const response = await axios.post(url, { token: token });
 
@@ -37,7 +37,7 @@ export default function Page() {
         correo : correo,
         password: newPassword,
       };
-      const url = "http://localhost:4000/restablecer";
+      const url = "https://backendprueba-9rnj.onrender.com/restablecer";
 
       const response = await axios.post(url, enviarDatos);
 

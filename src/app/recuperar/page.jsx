@@ -13,7 +13,7 @@ export default function Recuperar() {
     
         try {
           // Realizar la solicitud HTTP con Axios
-          const response = await axios.post('http://localhost:4000/send-email', {
+          const response = await axios.post('https://backendprueba-9rnj.onrender.com/send-email', {
             correo: formDatos.get('correo'),
           });
     

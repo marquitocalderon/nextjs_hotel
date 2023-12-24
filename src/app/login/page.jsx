@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios"; // Import Axios
 import { useRouter } from "next/navigation"; // Import the router
+import BotonGoogleJSX from "@/components/BotonGoogle";
 
 export default function Page() {
   const [showPassword, setShowPassword] = useState(false);
@@ -222,6 +223,7 @@ export default function Page() {
 
 
          </form>
+         <BotonGoogleJSX></BotonGoogleJSX>
       </div>
     </div>
   );
